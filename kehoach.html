@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic: Kế Hoạch Phát Triển Kinh Doanh Dịch Vụ Bảo Vệ</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts: Be Vietnam Pro -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Chosen Color Palette: Brilliant Blues */
+        /* Primary Dark Blue: #003f5c */
+        /* Medium Blue: #01497c */
+        /* Lighter Blue: #2a6f97 */
+        /* Even Lighter Blue: #468faf */
+        /* Lightest Blue: #61a5c2 */
+        /* Accent Orange: #ffa600 */
+        /* Risk Red: #ef5675 */
+        /* Solution Green: #22c55e */
+
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background-color: #f0f4f8; /* Light blue-gray background */
+            color: #003f5c; /* Dark blue for primary text */
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .section-card {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #003f5c;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .subsection-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #01497c;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        .subsection-title span {
+            margin-right: 0.75rem;
+            font-size: 2rem;
+        }
+        .kpi-card {
+            background-color: #013a63;
+            color: white;
+            padding: 2rem;
+            border-radius: 1.5rem;
+            text-align: center;
+        }
+        .kpi-number {
+            font-size: 4rem;
+            font-weight: 800;
+            color: #ffa600;
+            line-height: 1;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .segment-card {
+            background-color: #e0f2fe; /* Lighter blue for segment cards */
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+            border: 1px solid #bfdbfe;
+        }
+        .segment-card h4 {
+            color: #01497c;
+        }
+        .advantage-card {
+            background-color: #e6f7ff; /* Even lighter blue */
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            border: 1px solid #cceeff;
+        }
+        .advantage-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #01497c;
+        }
+        .strategy-card-interim {
+            background-color: #f0f8ff; /* Very light blue */
+            border-left: 5px solid #01497c;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+        }
+        .scenario-card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+            margin-bottom: 1rem;
+        }
+        .scenario-summary {
+            background-color: #e0f2fe;
+            padding: 1rem;
+            border-radius: 1rem 1rem 0 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #01497c;
+        }
+        .scenario-details {
+            padding: 1rem;
+            border-top: 1px solid #e2e8f0;
+            font-size: 0.9rem;
+            color: #334155;
+            display: none; /* Hidden by default */
+        }
+        .scenario-card.open .scenario-details {
+            display: block;
+        }
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #468faf;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 3px;
+        }
+        .timeline-container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+        .timeline-container.left {
+            left: 0;
+        }
+        .timeline-container.right {
+            left: 50%;
+        }
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: white;
+            border: 4px solid #ffa600;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .timeline-container.right::after {
+            left: -16px;
+        }
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            .timeline-container {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            .timeline-container.left, .timeline-container.right {
+                left: 0%;
+            }
+            .timeline-container.left::after, .timeline-container.right::after {
+                left: 15px;
+            }
+        }
+        .risk-item {
+            background-color: #fff0f0; /* Light red */
+            border-left: 4px solid #ef5675; /* Red border */
+            padding: 1rem;
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        .risk-item strong {
+            color: #ef5675;
+        }
+        .solution-item {
+            background-color: #e6fff5; /* Light green */
+            border-left: 4px solid #22c55e; /* Green border */
+            padding: 1rem;
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        .solution-item strong {
+            color: #16a34a;
+        }
+        .tool-item-container {
+            background-color: #dbeafe; /* Light blue */
+            color: #01497c;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 500;
+            transition: background-color 0.2s;
+            margin-bottom: 1rem; /* Spacing between tool items */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .tool-item-container:hover {
+            background-color: #bfdbfe;
+        }
+        .gemini-button {
+            background-color: #ffa600;
+            color: #003f5c;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .gemini-button:hover {
+            background-color: #e69500;
+        }
+        .gemini-response {
+            background-color: #f8fafc;
+            border-left: 4px solid #ffa600;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 0.75rem;
+            color: #334155;
+            font-size: 0.9rem;
+        }
+        .loading-indicator {
+            display: none;
+            margin-left: 1rem;
+            color: #01497c;
+        }
+        /* Removed Full-screen Modal Styles */
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <main class="container mx-auto p-4 md:p-8">
+        <!-- Main Header -->
+        <header class="text-center mb-12 md:mb-16">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-[#003f5c] mb-4">KẾ HOẠCH PHÁT TRIỂN KINH DOANH</h1>
+            <p class="text-2xl md:text-3xl font-semibold text-[#01497c]">DỊCH VỤ BẢO VỆ TẠI BÌNH DƯƠNG</p>
+            <hr class="border-t-2 border-[#468faf] w-24 mx-auto mt-6 mb-8 rounded-full">
+        </header>
+
+        <!-- 1. Mục Tiêu Tối Thượng -->
+        <section id="goal" class="section-card">
+            <h2 class="section-title">🎯 Mục Tiêu Tối Thượng</h2>
+            <p class="text-lg text-center mb-6 text-gray-700">Mục tiêu cốt lõi định hướng mọi hoạt động trong kế hoạch nhằm đạt được sự đột phá về doanh thu và thu nhập.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="kpi-card">
+                    <p class="text-xl font-semibold mb-2">Hoa Hồng Mục Tiêu / Tháng</p>
+                    <p class="kpi-number">100<span class="text-2xl font-bold text-white ml-2">triệu VND</span></p>
+                </div>
+                <div class="kpi-card">
+                    <p class="text-xl font-semibold mb-2">Doanh Số Hợp Đồng Ký / Tháng</p>
+                    <p class="kpi-number">1<span class="text-2xl font-bold text-white ml-2">tỷ VND</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Phân Khúc & Danh Sách Khách Hàng Tiềm Năng -->
+        <section id="market-segments" class="section-card">
+            <h2 class="section-title">👥 Phân Khúc & Khách Hàng Tiềm Năng</h2>
+            <p class="text-lg text-center mb-8 text-gray-700">Để đạt được mục tiêu 1 tỷ VND doanh số hợp đồng mỗi tháng, chúng ta sẽ tập trung vào 4 nhóm khách hàng có nhu cầu bảo vệ lớn và ổn định tại Bình Dương.</p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                <div>
+                    <h3 class="subsection-title text-center mb-4">Tỷ Trọng Khách Hàng Tiềm Năng (Theo Ngân Sách Ước Tính Trung Bình)</h3>
+                    <div class="chart-container h-80 md:h-96">
+                        <canvas id="segmentsChart"></canvas>
+                    </div>
+                    <p class="text-center text-gray-600 mt-4 text-sm">Biểu đồ thể hiện tỷ trọng tiềm năng doanh thu từ mỗi phân khúc khách hàng dựa trên ngân sách ước tính trung bình.</p>
+                </div>
+                <div>
+                    <h3 class="subsection-title text-center mb-4">Top 5 Ngân Sách Ước Tính Cao Nhất (Triệu VND/Tháng)</h3>
+                    <div class="chart-container h-80 md:h-96">
+                        <canvas id="budgetChart"></canvas>
+                    </div>
+                    <p class="text-center text-gray-600 mt-4 text-sm">Biểu đồ so sánh ngân sách ước tính tối thiểu và tối đa của các khách hàng tiềm năng hàng đầu.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- 2.1. Công ty sản xuất quy mô lớn -->
+                <div class="segment-card">
+                    <h4 class="font-bold text-xl mb-3 flex items-center"><span role="img" aria-label="Factory" class="mr-2">🏭</span> 2.1. Công ty sản xuất quy mô lớn</h4>
+                    <p class="text-gray-700 mb-3">Đặc điểm: Tài sản lớn, công nhân đông, nhu cầu an ninh 24/7 nghiêm ngặt. Ngân sách bảo vệ thường cao và ổn định.</p>
+                    <details class="text-sm text-gray-600">
+                        <summary class="font-semibold cursor-pointer text-[#01497c]">Ví dụ cụ thể (Nhấn để xem)</summary>
+                        <ul class="list-disc list-inside mt-2">
+                            <li>Công ty TNHH Sản Xuất Giày dép Thái Bình Dương (KCN VSIP 1, Thuận An): 5.000+ nhân sự, ngân sách ước tính 150-250 triệu đ/tháng.</li>
+                            <li>Công ty TNHH Yazaki EDS Việt Nam (KCN Sóng Thần 1, Dĩ An): 3.000+ nhân sự, ngân sách ước tính 120-200 triệu đ/tháng.</li>
+                            <li>Công ty TNHH Kumho Tire Việt Nam (KCN Mỹ Phước 3, Bến Cát): 2.500+ nhân sự, ngân sách ước tính 100-180 triệu đ/tháng.</li>
+                            <li>Công ty Cổ phần Gỗ An Cường (KCN Nam Tân Uyên, Tân Uyên): 2.000+ nhân sự, ngân sách ước tính 80-150 triệu đ/tháng.</li>
+                            <li>Công ty TNHH Shyang Hung Cheng (KCN Bàu Bàng, Bàu Bàng): 4.000+ nhân sự, ngân sách ước tính 150-220 triệu đ/tháng.</li>
+                            <li>Công ty TNHH Panasonic Appliances Việt Nam (KCN Amata, Biên Hòa – giáp ranh Bình Dương): 2.000+ nhân sự, ngân sách ước tính 90-160 triệu đ/tháng.</li>
+                            <li>Công ty TNHH Foster Electric (Việt Nam) (KCN VSIP 2, Tân Uyên): 1.800+ nhân sự, ngân sách ước tính 70-130 triệu đ/tháng.</li>
+                            <li>Công ty TNHH King Star (KCN VSIP 2A, Bắc Tân Uyên): 1.500+ nhân sự, ngân sách ước tính 60-120 triệu đ/tháng.</li>
+                            <li>Công ty TNHH C.P. Việt Nam (Chi nhánh Bình Dương) (Thuận An): 2.000+ nhân sự, ngân sách ước tính 90-160 triệu đ/tháng.</li>
+                            <li>Công ty TNHH May Mặc Dệt Kim Duy Khanh (KCN Đồng An 2, Thuận An): 1.000+ nhân sự, ngân sách ước tính 50-100 triệu đ/tháng.</li>
+                        </ul>
+                    </details>
+                </div>
+
+                <!-- 2.2. Khu công nghiệp -->
+                <div class="segment-card">
+                    <h4 class="font-bold text-xl mb-3 flex items-center"><span role="img" aria-label="Industrial Park" class="mr-2">🏗️</span> 2.2. Khu công nghiệp</h4>
+                    <p class="text-gray-700 mb-3">Đặc điểm: Nhu cầu bảo vệ cơ sở hạ tầng chung, cổng ra vào, tuần tra nội khu, PCCC. Hợp đồng lớn, dài hạn và ổn định.</p>
+                    <details class="text-sm text-gray-600">
+                        <summary class="font-semibold cursor-pointer text-[#01497c]">Ví dụ cụ thể (Nhấn để xem)</summary>
+                        <ul class="list-disc list-inside mt-2">
+                            <li>Ban Quản Lý KCN Việt Nam – Singapore (VSIP 1, Thuận An): Ngân sách ước tính 200-400 triệu đ/tháng.</li>
+                            <li>Ban Quản Lý KCN Sóng Thần (Sóng Thần 1, 2, 3, Dĩ An): Ngân sách ước tính 250-500 triệu đ/tháng.</li>
+                            <li>Ban Quản Lý KCN Mỹ Phước (Mỹ Phước 1, 2, 3, 4 – Bến Cát): Ngân sách ước tính 300-600 triệu đ/tháng.</li>
+                            <li>Ban Quản Lý KCN Đồng An (Thuận An): Ngân sách ước tính 100-250 triệu đ/tháng.</li>
+                            <li>Ban Quản Lý KCN Bàu Bàng (Bàu Bàng): Ngân sách ước tính 150-300 triệu đ/tháng.</li>
+                            <li>Ban Quản Lý KCN Nam Tân Uyên (Tân Uyên): Ngân sách ước tính 100-200 triệu đ/tháng.</li>
+                            <li>Ban Quản Lý KCN Tân Đông Hiệp (Dĩ An): Ngân sách ước tính 80-180 triệu đ/tháng.</li>
+                            <li>Ban Quản Lý KCN Đại Đăng (Tân Uyên): Ngân sách ước tính 70-150 triệu đ/tháng.</li>
+                            <li>Ban Quản Lý KCN VSIP 2 (Tân Uyên): Ngân sách ước tính 150-300 triệu đ/tháng.</li>
+                            <li>Ban Quản Lý KCN Phú Gia (Thuận An): Ngân sách ước tính 60-120 triệu đ/tháng.</li>
+                        </ul>
+                    </details>
+                </div>
+
+                <!-- 2.3. Trung tâm thương mại, Siêu thị lớn, Chuỗi bán lẻ -->
+                <div class="segment-card">
+                    <h4 class="font-bold text-xl mb-3 flex items-center"><span role="img" aria-label="Shopping Mall" class="mr-2">🛍️</span> 2.3. Trung tâm thương mại, Siêu thị lớn, Chuỗi bán lẻ</h4>
+                    <p class="text-gray-700 mb-3">Đặc điểm: Cần bảo vệ an ninh, tài sản, PCCC, kiểm soát người ra vào, quản lý bãi đậu xe. Nhu cầu ổn định, hợp đồng giá trị cao.</p>
+                    <details class="text-sm text-gray-600">
+                        <summary class="font-semibold cursor-pointer text-[#01497c]">Ví dụ cụ thể (Nhấn để xem)</summary>
+                        <ul class="list-disc list-inside mt-2">
+                            <li>AEON Mall Bình Dương Canary (Thuận An): Ngân sách ước tính 150-250 triệu đ/tháng.</li>
+                            <li>Lotte Mart Bình Dương (Thuận An): Ngân sách ước tính 80-150 triệu đ/tháng.</li>
+                            <li>MM Mega Market Hiệp Phú (Thuận An): Ngân sách ước tính 70-140 triệu đ/tháng.</li>
+                            <li>Big C Dĩ An (Dĩ An): Ngân sách ước tính 60-120 triệu đ/tháng.</li>
+                            <li>Co.opXtra Tân An (Thuận An): Ngân sách ước tính 50-100 triệu đ/tháng.</li>
+                            <li>Becamex Tower & Plaza (Thủ Dầu Một): Ngân sách ước tính 100-180 triệu đ/tháng.</li>
+                            <li>Trung Tâm Hội Nghị Triển Lãm Tỉnh Bình Dương (Thủ Dầu Một): Ngân sách ước tính 40-80 triệu đ/tháng (ổn định).</li>
+                            <li>Hệ thống chuỗi cửa hàng FPT Shop/Thế Giới Di Động lớn (các cửa hàng flagship tại Thủ Dầu Một, Thuận An, Dĩ An): Tổng 30-60 triệu đ/tháng.</li>
+                            <li>Chợ Lái Thiêu (Thuận An): Ngân sách ước tính 50-100 triệu đ/tháng.</li>
+                            <li>Hệ thống rạp chiếu phim CGV/Lotte Cinema (CGV Aeon Mall, Lotte Cinema Bình Dương): Ngân sách ước tính 30-70 triệu đ/tháng.</li>
+                        </ul>
+                    </details>
+                </div>
+
+                <!-- 2.4. Khu đô thị, Chung cư cao cấp, Bệnh viện tư nhân -->
+                <div class="segment-card">
+                    <h4 class="font-bold text-xl mb-3 flex items-center"><span role="img" aria-label="Hospital" class="mr-2">🏥</span> 2.4. Khu đô thị, Chung cư cao cấp, Bệnh viện tư nhân</h4>
+                    <p class="text-gray-700 mb-3">Đặc điểm: Nhu cầu bảo vệ an ninh, trật tự, tài sản cho cư dân/bệnh nhân, kiểm soát ra vào, tuần tra nội khu. Yêu cầu cao về hình ảnh và thái độ.</p>
+                    <details class="text-sm text-gray-600">
+                        <summary class="font-semibold cursor-pointer text-[#01497c]">Ví dụ cụ thể (Nhấn để xem)</summary>
+                        <ul class="list-disc list-inside mt-2">
+                            <li>The Canary Apartment (Thuận An): Ngân sách ước tính 80-150 triệu đ/tháng.</li>
+                            <li>Habitat Bình Dương (Thuận An): Ngân sách ước tính 70-130 triệu đ/tháng.</li>
+                            <li>EcoLakes Mỹ Phước (Bến Cát): Ngân sách ước tính 60-120 triệu đ/tháng.</li>
+                            <li>Bệnh viện Quốc tế Hạnh Phúc (Thuận An): Ngân sách ước tính 100-180 triệu đ/tháng.</li>
+                            <li>Bệnh viện Columbia Asia Bình Dương (Thuận An): Ngân sách ước tính 90-160 triệu đ/tháng.</li>
+                            <li>Khu dân cư VSIP (Thuận An): Ngân sách ước tính 50-100 triệu đ/tháng.</li>
+                            <li>Chung cư Opal Boulevard (Dĩ An): Ngân sách ước tính 60-110 triệu đ/tháng.</li>
+                            <li>Khu đô thị Vsip Thiên Phát (Bến Cát): Ngân sách ước tính 50-90 triệu đ/tháng.</li>
+                            <li>Chung cư Ehome 4 (Thuận An): Ngân sách ước tính 40-80 triệu đ/tháng.</li>
+                            <li>Bệnh viện Becamex (Thuận An): Ngân sách ước tính 120-200 triệu đ/tháng.</li>
+                        </ul>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Lợi Thế Cạnh Tranh Của Nam Thiên Long -->
+        <section id="advantages" class="section-card">
+            <h2 class="section-title">🏆 Lợi Thế Cạnh Tranh Của Nam Thiên Long</h2>
+            <p class="text-lg text-center mb-8 text-gray-700">Khi nói chuyện với khách hàng, bạn hãy tự tin kể về những điểm mạnh này của Nam Thiên Long, đó là những "át chủ bài" giúp bạn chốt hợp đồng dễ dàng hơn.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="advantage-card">
+                    <p class="icon">🕰️</p>
+                    <h3 class="font-bold text-xl text-[#01497c] mb-2">Kinh nghiệm và Uy tín lâu năm</h3>
+                    <ul class="text-gray-600 text-sm text-left list-disc list-inside">
+                        <li>Thành lập từ 2004, được Tổng Cục Cảnh sát cấp phép toàn quốc.</li>
+                        <li>Hơn 20 năm kinh nghiệm của Ban lãnh đạo (từ Quân đội, Công an).</li>
+                        <li>Hơn 2400 nhân sự, hoạt động tại 16 tỉnh thành, hợp tác với hơn 200 doanh nghiệp lớn.</li>
+                    </ul>
+                </div>
+                <div class="advantage-card">
+                    <p class="icon">👨‍🎓</p>
+                    <h3 class="font-bold text-xl text-[#01497c] mb-2">Nhân sự chất lượng cao, được đào tạo bài bản</h3>
+                    <ul class="text-gray-600 text-sm text-left list-disc list-inside">
+                        <li>Có Trung tâm đào tạo riêng, sát hạch bởi Tổng Cục Cảnh sát, cấp chứng chỉ hành nghề cho từng nhân viên.</li>
+                        <li>Quy trình tuyển chọn, đào tạo, quản lý theo chuẩn ISO 9001:2008.</li>
+                        <li>Đặc biệt, hơn 65% nhân sự là bộ đội, công an xuất ngũ, có kỷ luật, nghiệp vụ và thành thạo các thiết bị an ninh, PCCC.</li>
+                    </ul>
+                </div>
+                <div class="advantage-card">
+                    <p class="icon">💰</p>
+                    <h3 class="font-bold text-xl text-[#01497c] mb-2">Tiềm lực tài chính vững mạnh và cam kết bồi thường NHANH</h3>
+                    <ul class="text-gray-600 text-sm text-left list-disc list-inside">
+                        <li>Vốn điều lệ 48 tỷ đồng, cùng bảo hiểm trách nhiệm nghề nghiệp 5 tỷ đồng.</li>
+                        <li>Cam kết bồi thường **NGAY LẬP TỨC** nếu có sự cố do bảo vệ gây ra, không cần chờ kết luận từ cơ quan điều tra. Điều này giúp khách hàng hoàn toàn an tâm, không lo rủi ro tài chính.</li>
+                    </ul>
+                </div>
+                <div class="advantage-card">
+                    <p class="icon">📡</p>
+                    <h3 class="font-bold text-xl text-[#01497c] mb-2">Hệ thống an ninh hiện đại, phối hợp chặt chẽ với cơ quan chức năng</h3>
+                    <ul class="text-gray-600 text-sm text-left list-disc list-inside">
+                        <li>Có Trung tâm cảnh báo từ xa với thiết bị hiện đại, kết hợp với đội cơ động phản ứng nhanh 24/24.</li>
+                        <li>Mô hình hoạt động khép kín, phối hợp thường xuyên và chặt chẽ với Công an, Cảnh sát cơ động, PCCC để xử lý mọi tình huống nhanh chóng, dứt điểm.</li>
+                        <li>Kết hợp với hệ thống SECOM (hệ thống an ninh nổi tiếng) tạo ra hàng rào bảo vệ hoàn hảo.</li>
+                    </ul>
+                </div>
+                <div class="advantage-card">
+                    <p class="icon">📈</p>
+                    <h3 class="font-bold text-xl text-[#01497c] mb-2">Giá trị thực sự mang lại cho khách hàng</h3>
+                    <ul class="text-gray-600 text-sm text-left list-disc list-inside">
+                        <li>Giúp khách hàng giảm chi phí từ 15-30% thông qua khảo sát và lập phương án tối ưu, đồng thời đảm bảo an toàn tuyệt đối.</li>
+                        <li>Không phát sinh chi phí ẩn, mọi thứ đều rõ ràng.</li>
+                        <li>Nâng tầm hình ảnh và thương hiệu của khách hàng.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Chiến Lược Tiếp Cận Phù Hợp Vai Trò Trung Gian -->
+        <section id="intermediary-strategy" class="section-card">
+            <h2 class="section-title">🤝 Chiến Lược Tiếp Cận (Vai Trò Trung Gian)</h2>
+            <p class="text-lg text-center mb-8 text-gray-700">Bạn là cầu nối đáng tin cậy, không phải công ty bảo vệ. Giá trị bạn mang lại là sự "sàng lọc" và "tối ưu" giải pháp an ninh cho khách hàng.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="strategy-card-interim">
+                    <h3 class="font-bold text-lg text-[#01497c] mb-2">Giảm chi phí ẩn & rủi ro</h3>
+                    <p class="text-gray-700 text-sm">Giúp khách hàng tránh các công ty bảo vệ kém chất lượng, đội ngũ không chuyên nghiệp, dẫn đến mất mát tài sản, sự cố an ninh. Bạn sàng lọc, chỉ giới thiệu những đơn vị uy tín, có hồ sơ năng lực đã được kiểm chứng.</p>
+                </div>
+                <div class="strategy-card-interim">
+                    <h3 class="font-bold text-lg text-[#01497c] mb-2">Sàng lọc nhân sự hiệu quả</h3>
+                    <p class="text-gray-700 text-sm">Bạn giới thiệu "đội ngũ nhân sự" phù hợp nhất với đặc thù từng khách hàng. Bạn hiểu rõ điểm mạnh, yếu của từng công ty bảo vệ và từng đội ngũ nhân sự của họ.</p>
+                </div>
+                <div class="strategy-card-interim">
+                    <h3 class="font-bold text-lg text-[#01497c] mb-2">Thay ca linh hoạt & Xử lý tình huống</h3>
+                    <p class="text-gray-700 text-sm">Cam kết công ty bảo vệ bạn giới thiệu có khả năng điều phối nhân sự nhanh chóng, linh hoạt đáp ứng mọi yêu cầu đột xuất (tăng cường, thay ca, xử lý sự cố).</p>
+                </div>
+                <div class="strategy-card-interim">
+                    <h3 class="font-bold text-lg text-[#01497c] mb-2">Tiết kiệm thời gian</h3>
+                    <p class="text-gray-700 text-sm">Khách hàng không cần mất thời gian tìm kiếm, so sánh, đàm phán với nhiều đơn vị. Bạn là "chuyên gia tư vấn" giúp họ có quyết định nhanh chóng, chính xác.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Kịch Bản Tiếp Cận Đa Kênh -->
+        <section id="multi-channel-scripts" class="section-card">
+            <h2 class="section-title">🗣️ Kịch Bản Tiếp Cận Đa Kênh</h2>
+            <p class="text-lg text-center mb-8 text-gray-700 italic">(Luôn nhớ: bạn là chuyên gia tư vấn, là người bạn đồng hành, không phải nhân viên sale.)</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- 5.1. Kịch bản điện thoại (Gọi lạnh - Cold Call) -->
+                <div class="scenario-card">
+                    <div class="scenario-summary" onclick="toggleDetails(this)">
+                        <span>📞 5.1. Kịch bản điện thoại (Gọi lạnh - Cold Call)</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="scenario-details">
+                        <p class="mb-2"><strong>Mở đầu (Rất ngắn gọn, đi thẳng vào vấn đề):</strong></p>
+                        <p id="phoneScriptStart">"Chào anh/chị [Tên Người Liên Hệ/Chức danh], em là [Tên bạn] đây ạ – một người bạn làm trong ngành dịch vụ bảo vệ ở Bình Dương cũng được 15 năm rồi. Em có biết [Tên Công Ty/Tổ Chức] mình đang [có nhu cầu tìm hiểu/có thể cần nâng cấp] giải pháp an ninh. Em có một vài ý tưởng hay ho có thể giúp bên mình tối ưu chi phí mà vẫn đảm bảo an ninh tuyệt đối, không tốn thời gian của anh/chị đâu. Chắc tầm 2 phút thôi, em xin phép chia sẻ ngắn gọn được không ạ?"</p>
+                        <button class="gemini-button" onclick="summarizeScript('phoneScriptStart', event)">✨ Tóm tắt Mở đầu</button>
+                        <button class="gemini-button" onclick="improveScript('phoneScriptStart', event)">✨ Cải thiện Kịch bản</button>
+                        <div class="gemini-response hidden"></div>
+
+                        <p class="mt-3 mb-2"><strong>Follow-up (Sau khi gửi email/Zalo nhưng chưa được hồi âm):</strong></p>
+                        <p id="phoneScriptFollowUp">"Chào anh/chị [Tên], em là [Tên bạn] đây ạ, hôm trước em có gửi thông tin về giải pháp an ninh cho [Tên Công Ty] mình qua email/Zalo. Anh/chị đã kịp xem qua chưa ạ? Có điểm nào chưa rõ cần em giải thích thêm không? Em tin đây là một giải pháp rất đáng để bên mình tìm hiểu kỹ hơn đấy ạ."</p>
+                        <button class="gemini-button" onclick="summarizeScript('phoneScriptFollowUp', event)">✨ Tóm tắt Follow-up</button>
+                        <button class="gemini-button" onclick="improveScript('phoneScriptFollowUp', event)">✨ Cải thiện Kịch bản</button>
+                        <div class="gemini-response hidden"></div>
+
+                        <p class="mt-3 mb-2"><strong>Chốt hẹn (Khi khách hàng tỏ ra quan tâm):</strong></p>
+                        <p id="phoneScriptClose">"Nghe tuyệt vời quá! Vậy để em có thể trình bày cụ thể hơn về cách Nam Thiên Long có thể giúp [Tên Công Ty] tiết kiệm chi phí và đảm bảo an ninh hiệu quả nhất, mình sắp xếp một buổi gặp trực tiếp khoảng 30 phút vào sáng thứ [Thứ] hay chiều thứ [Thứ] tới được không ạ? Em sẽ mang theo những 'hồ sơ năng lực' xịn nhất của Nam Thiên Long mà em đã sàng lọc kỹ càng."</p>
+                        <button class="gemini-button" onclick="summarizeScript('phoneScriptClose', event)">✨ Tóm tắt Chốt hẹn</button>
+                        <button class="gemini-button" onclick="improveScript('phoneScriptClose', event)">✨ Cải thiện Kịch bản</button>
+                        <div class="gemini-response hidden"></div>
+
+                        <p class="mt-3 mb-2"><strong>Xử lý từ chối (Ví dụ: "Chúng tôi đang ổn định", "Đang có nhà cung cấp rồi"):</strong></p>
+                        <p id="phoneScriptRejection">"Em hiểu mà. Nhiều doanh nghiệp cũng nghĩ vậy cho đến khi họ nhận ra những chi phí 'ẩn' và rủi ro tiềm tàng từ việc không tối ưu hệ thống an ninh. Em không có ý là bên mình phải thay đổi ngay đâu ạ. Mục đích của em chỉ là chia sẻ một góc nhìn mới, một giải pháp mà Nam Thiên Long đã giúp nhiều doanh nghiệp khác tiết kiệm 15-20% chi phí mà vẫn nâng cao chất lượng. Anh/chị có thể dành 15 phút để em trình bày những điểm khác biệt đáng giá đó không?"</p>
+                        <button class="gemini-button" onclick="summarizeScript('phoneScriptRejection', event)">✨ Tóm tắt Xử lý từ chối</button>
+                        <button class="gemini-button" onclick="improveScript('phoneScriptRejection', event)">✨ Cải thiện Kịch bản</button>
+                        <div class="gemini-response hidden"></div>
+                    </div>
+                </div>
+
+                <!-- 5.2. Kịch bản Email -->
+                <div class="scenario-card">
+                    <div class="scenario-summary" onclick="toggleDetails(this)">
+                        <span>📧 5.2. Kịch bản Email</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="scenario-details">
+                        <p class="mb-2"><strong>Mở đầu:</strong></p>
+                        <p id="emailScriptTitle"><strong>Tiêu đề:</strong> "Giải pháp an ninh tối ưu & tiết kiệm chi phí cho [Tên Công Ty] - [Tên bạn]"</p>
+                        <button class="gemini-button" onclick="generateEmailSubject('emailScriptContent', event)">✨ Gợi ý Tiêu đề Email</button>
+                        <div class="gemini-response hidden"></div>
+
+                        <p id="emailScriptContent" class="mt-3"><strong>Nội dung:</strong><br>"Kính gửi Anh/Chị [Tên Người Liên Hệ/Chức danh],<br>Em là [Tên bạn], một người bạn đồng hành trong lĩnh vực dịch vụ bảo vệ tại Bình Dương với 15 năm kinh nghiệm. Em chuyên kết nối các doanh nghiệp như [Tên Công Ty] với những đơn vị bảo vệ uy tín hàng đầu, đã được kiểm chứng về chất lượng và hiệu quả chi phí.<br>Với tình hình an ninh ngày càng phức tạp và nhu cầu tối ưu ngân sách hiện nay, em tin rằng [Tên Công Ty] mình có thể hưởng lợi rất nhiều từ một giải pháp an ninh được thiết kế riêng, không chỉ đảm bảo an toàn tuyệt đối mà còn giúp tiết kiệm đáng kể.<br>Những giá trị mà Nam Thiên Long có thể mang lại cho bên mình, thông qua sự giới thiệu của em:<br>• An tâm tuyệt đối: Nam Thiên Long có tiềm lực tài chính vững mạnh (48 tỷ vốn), cam kết bồi thường ngay lập tức nếu có sự cố, không để anh/chị phải lo lắng.<br>• Nhân sự chuẩn chỉnh: Đội ngũ bảo vệ được đào tạo bài bản theo chuẩn ISO 9001:2008, 65% là bộ đội/công an xuất ngũ, đảm bảo nghiệp vụ và kỷ luật cao.<br>• Tối ưu chi phí: Nam Thiên Long cam kết giúp giảm 15-30% chi phí bảo vệ hiện tại mà vẫn nâng cao chất lượng dịch vụ.<br>• Phản ứng nhanh: Hệ thống cảnh báo 24/24 và đội cơ động luôn sẵn sàng hỗ trợ, phối hợp chặt chẽ với công an địa phương.<br>Em rất mong có cơ hội trao đổi trực tiếp khoảng 20-30 phút để hiểu rõ hơn về nhu cầu của [Tên Công Ty] và giới thiệu giải pháp phù hợp nhất. Anh/Chị có thể cho em biết thời gian nào thuận tiện để chúng ta kết nối không ạ?<br>Trân trọng,<br>[Tên bạn]<br>Cố vấn phát triển kinh doanh dịch vụ bảo vệ<br>[Số điện thoại] | [Email] | [LinkedIn Profile (nếu có)]"</p>
+                        <button class="gemini-button" onclick="summarizeScript('emailScriptContent', event)">✨ Tóm tắt Nội dung Email</button>
+                        <button class="gemini-button" onclick="improveScript('emailScriptContent', event)">✨ Cải thiện Kịch bản</button>
+                        <div class="gemini-response hidden"></div>
+
+                        <p class="mt-3 mb-2"><strong>Follow-up (Sau 3-5 ngày nếu chưa có phản hồi):</strong></p>
+                        <p id="emailScriptFollowUpContent"><strong>Tiêu đề:</strong> "Nhắc lại: Giải pháp an ninh tối ưu cho [Tên Công Ty] - [Tên bạn]"</p>
+                        <p>"Kính gửi Anh/Chị [Tên],<br>Em hy vọng email trước của em không làm phiền anh/chị. Em muốn kiểm tra xem anh/chị đã nhận được thông tin em gửi về giải pháp an ninh và tối ưu chi phí cho [Tên Công Ty] chưa ạ.<br>Trong bối cảnh nhiều doanh nghiệp đang tìm cách nâng cao hiệu quả an ninh đồng thời kiểm soát ngân sách, em tin những giá trị mà Nam Thiên Long mang lại có thể rất hữu ích cho [Tên Công Ty] trong việc:<br>• An tâm tuyệt đối với cam kết bồi thường ngay lập tức.<br>• Có đội ngũ bảo vệ chuyên nghiệp, được đào tạo bài bản.<br>• Giảm thiểu rủi ro an ninh và chi phí không cần thiết.<br>Em rất mong được trò chuyện ngắn gọn để làm rõ hơn các điểm này và xem xét liệu giải pháp của Nam Thiên Long có phù hợp với định hướng của [Tên Công Ty] hay không.<br>Xin vui lòng phản hồi email này hoặc liên hệ em qua số [Số điện thoại] nhé.<br>Trân trọng,<br>[Tên bạn]"</p>
+                        <button class="gemini-button" onclick="summarizeScript('emailScriptFollowUpContent', event)">✨ Tóm tắt Email Follow-up</button>
+                        <button class="gemini-button" onclick="improveScript('emailScriptFollowUpContent', event)">✨ Cải thiện Kịch bản</button>
+                        <div class="gemini-response hidden"></div>
+                    </div>
+                </div>
+
+                <!-- 5.3. Kịch bản Zalo/LinkedIn (Phá băng - Breaking the ice) -->
+                <div class="scenario-card">
+                    <div class="scenario-summary" onclick="toggleDetails(this)">
+                        <span>💬 5.3. Kịch bản Zalo/LinkedIn (Phá băng)</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="scenario-details">
+                        <p class="mb-2"><strong>Lời mời kết nối/tin nhắn đầu tiên:</strong></p>
+                        <p id="zaloLinkedinInvite">"Chào anh/chị [Tên], em là [Tên bạn], một người làm cố vấn dịch vụ bảo vệ chuyên nghiệp tại Bình Dương. Em rất ấn tượng với [Hoạt động/Thành tựu gần đây của công ty họ, hoặc điểm chung nào đó]. Với kinh nghiệm hỗ trợ nhiều doanh nghiệp trong việc tối ưu an ninh, em tin có thể chia sẻ một số góc nhìn hữu ích cho [Tên Công Ty] mình. Rất vui được kết nối với anh/chị!"</p>
+                        <button class="gemini-button" onclick="summarizeScript('zaloLinkedinInvite', event)">✨ Tóm tắt Lời mời</button>
+                        <button class="gemini-button" onclick="improveScript('zaloLinkedinInvite', event)">✨ Cải thiện Kịch bản</button>
+                        <div class="gemini-response hidden"></div>
+
+                        <p class="mt-3 mb-2"><strong>Khi khách hàng chấp nhận kết nối (Sau đó 1-2 ngày):</strong></p>
+                        <p id="zaloLinkedinAccept">"Chào anh/chị [Tên], cảm ơn anh/chị đã chấp nhận lời mời kết nối của em nhé. Em là [Tên bạn], chuyên gia tư vấn giải pháp an ninh với 15 năm kinh nghiệm tại các KCN Bình Dương. Em thường xuyên hỗ trợ các doanh nghiệp tìm kiếm và tối ưu dịch vụ bảo vệ, giúp họ tiết kiệm chi phí và có được đội ngũ nhân sự chất lượng. Em có thể chia sẻ vài phút về cách Nam Thiên Long đã giúp [Tên công ty tương tự] đạt được điều này không ạ?"</p>
+                        <button class="gemini-button" onclick="summarizeScript('zaloLinkedinAccept', event)">✨ Tóm tắt Chấp nhận kết nối</button>
+                        <button class="gemini-button" onclick="improveScript('zaloLinkedinAccept', event)">✨ Cải thiện Kịch bản</button>
+                        <div class="gemini-response hidden"></div>
+                    </div>
+                </div>
+
+                <!-- 5.4. Gặp trực tiếp (Tại sự kiện, văn phòng khách hàng) -->
+                <div class="scenario-card">
+                    <div class="scenario-summary" onclick="toggleDetails(this)">
+                        <span>🤝 5.4. Gặp trực tiếp</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="scenario-details">
+                        <p class="mb-2"><strong>Mở đầu (Tại sự kiện/networking):</strong></p>
+                        <p id="inPersonEvent">"Chào anh/chị [Tên], em là [Tên bạn], cố vấn độc lập về giải pháp an ninh tại Bình Dương. Em chuyên giúp các doanh nghiệp lớn như [Tên Công Ty] tối ưu chi phí và chất lượng đội ngũ bảo vệ. Em thấy [điểm chung: ví dụ: chúng ta cùng tham dự sự kiện này/công ty anh/chị nằm trong KCN X]. Em có một vài thông tin về xu hướng an ninh và giải pháp nhân sự của Nam Thiên Long có thể hữu ích cho anh/chị. Liệu chúng ta có thể trao đổi thêm vài phút không ạ?"</p>
+                        <button class="gemini-button" onclick="summarizeScript('inPersonEvent', event)">✨ Tóm tắt Mở đầu sự kiện</button>
+                        <button class="gemini-button" onclick="improveScript('inPersonEvent', event)">✨ Cải thiện Kịch bản</button>
+                        <div class="gemini-response hidden"></div>
+
+                        <p class="mt-3 mb-2"><strong>Khi vào thẳng vấn đề (Tại văn phòng khách hàng):</strong></p>
+                        <p id="inPersonOffice">"Cảm ơn anh/chị đã dành thời gian cho em. Như đã trao đổi, vai trò của em là giúp [Tên Công Ty] mình có được giải pháp an ninh tốt nhất mà không cần tốn thời gian hay đối mặt rủi ro. Em không phải công ty bảo vệ, mà là người đại diện cho quyền lợi của anh/chị, sàng lọc từ hàng chục đơn vị để tìm ra đối tác phù hợp nhất. Cụ thể, em sẽ giúp anh/chị nhìn thấy:<br>• [Điểm yếu tiềm ẩn trong hệ thống an ninh hiện tại (nếu có thông tin sơ bộ)]<br>• [Cơ hội tiết kiệm chi phí nhưng vẫn đảm bảo chất lượng với Nam Thiên Long]<br>• [Khả năng linh hoạt trong việc thay đổi nhân sự/tăng cường đột xuất của Nam Thiên Long]<br>Em có thể bắt đầu bằng việc phân tích nhanh tình hình hiện tại của [Tên Công Ty] mình được không ạ?"</p>
+                        <button class="gemini-button" onclick="summarizeScript('inPersonOffice', event)">✨ Tóm tắt Vào vấn đề</button>
+                        <button class="gemini-button" onclick="improveScript('inPersonOffice', event)">✨ Cải thiện Kịch bản</button>
+                        <button class="gemini-button" onclick="generateMeetingAgenda('inPersonOffice', event)">✨ Tạo Agenda Cuộc Họp</button>
+                        <div class="gemini-response hidden"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Kế Hoạch Hành Động 4 Tuần Chi Tiết Tới Từng Ngày -->
+        <section id="action-plan" class="section-card">
+            <h2 class="section-title">🗓️ Kế Hoạch Hành Động 4 Tuần Chi Tiết</h2>
+            <p class="text-lg text-center mb-8 text-gray-700">Đây là kế hoạch cường độ cao để nhanh chóng đạt mục tiêu 1 tỷ doanh số hợp đồng.</p>
+
+            <div class="timeline">
+                <div class="timeline-container left">
+                    <div class="timeline-content">
+                        <h3 class="text-xl font-bold text-[#01497c]">Tuần 1: Xây Dựng Phễu & Tiếp Cận Ban Đầu</h3>
+                        <p class="text-sm text-gray-500 mb-2">KPI: 50 Lead Mới</p>
+                        <ul class="text-gray-600 text-sm list-disc list-inside">
+                            <li>Thứ 2: Nghiên cứu sâu hơn 2 nhóm khách hàng đầu tiên (Nhà máy, KCN). Lập danh sách 200+ công ty tiềm năng. Xác định thông tin liên hệ.</li>
+                            <li>Thứ 3-Thứ 4: Soạn thảo email/kịch bản Zalo chuyên nghiệp. Bắt đầu gửi 50 email/tin nhắn LinkedIn/Zalo cho nhóm lead A.</li>
+                            <li>Thứ 5-Thứ 6: Thực hiện 50 cuộc gọi lạnh (cold call) cho nhóm lead B (ưu tiên các công ty quy mô lớn nhất).</li>
+                        </ul>
+                        <p class="text-gray-700 font-semibold mt-3">HĐ cần chốt: 0 (tập trung xây phễu)</p>
+                    </div>
+                </div>
+                <div class="timeline-container right">
+                    <div class="timeline-content">
+                        <h3 class="text-xl font-bold text-[#01497c]">Tuần 2: Tăng Cường Tiếp Cận & Chốt Hẹn</h3>
+                        <p class="text-sm text-gray-500 mb-2">KPI: 100 Cuộc gọi, 10 Cuộc hẹn</p>
+                        <ul class="text-gray-600 text-sm list-disc list-inside">
+                            <li>Thứ 2-Thứ 3: Gửi 50 email/Zalo tiếp theo. Gọi lại 50 lead đã email/Zalo tuần 1. Xác định lý do từ chối.</li>
+                            <li>Thứ 4-Thứ 6: Tiếp tục gọi lạnh 50 lead mới. Tập trung chốt ít nhất 10 cuộc hẹn gặp trực tiếp/online cho tuần 3.</li>
+                            <li>Cuối tuần: Đánh giá hiệu quả tiếp cận, điều chỉnh kịch bản nếu cần.</li>
+                        </ul>
+                        <p class="text-gray-700 font-semibold mt-3">HĐ cần chốt: 0 (tập trung chốt hẹn)</p>
+                    </div>
+                </div>
+                <div class="timeline-container left">
+                    <div class="timeline-content">
+                        <h3 class="text-xl font-bold text-[#01497c]">Tuần 3: Gặp Gỡ Khách Hàng & Chốt Hợp Đồng</h3>
+                        <p class="text-sm text-gray-500 mb-2">KPI: 10 Cuộc gặp, 2-3 HĐ chốt</p>
+                        <ul class="text-gray-600 text-sm list-disc list-inside">
+                            <li>Thứ 2-Thứ 5: Thực hiện các cuộc gặp đã hẹn. Trình bày giá trị cốt lõi, tập trung vào giải pháp cho vấn đề của khách hàng. Luôn có sẵn hồ sơ năng lực rút gọn của Nam Thiên Long.</li>
+                            <li>Thứ 6: Gửi đề xuất/báo giá theo yêu cầu sau cuộc gặp. Follow-up các cuộc gặp chưa chốt. Bắt đầu đàm phán.</li>
+                            <li>Cuối tuần: Đánh giá kết quả gặp gỡ.</li>
+                        </ul>
+                        <p class="text-gray-700 font-semibold mt-3">HĐ cần chốt: 2-3 HĐ (100-150tr)</p>
+                    </div>
+                </div>
+                <div class="timeline-container right">
+                    <div class="timeline-content">
+                        <h3 class="text-xl font-bold text-[#01497c]">Tuần 4: Chốt Dứt Điểm & Đánh Giá</h3>
+                        <p class="text-sm text-gray-500 mb-2">KPI: 50 Cuộc gọi/follow-up, 10 Cuộc gặp (phát sinh/follow-up), 5-7 HĐ chốt</p>
+                        <ul class="text-gray-600 text-sm list-disc list-inside">
+                            <li>Thứ 2-Thứ 4: Tập trung gọi điện, email, Zalo follow-up dứt điểm các lead đã gặp và đã gửi báo giá. Xử lý các vướng mắc, làm rõ thông tin, thương lượng.</li>
+                            <li>Thứ 5-Thứ 6: Tăng tốc chốt các hợp đồng còn lại. Thực hiện thêm các cuộc gặp phát sinh nếu có. Lập kế hoạch cho tháng tiếp theo.</li>
+                            <li>Cuối tuần: Tổng kết tháng, đối chiếu KPI.</li>
+                        </ul>
+                        <p class="text-gray-700 font-semibold mt-3">HĐ cần chốt: 5-7 HĐ (250-350tr)</p>
+                    </div>
+                </div>
+                <div class="timeline-container left">
+                    <div class="timeline-content bg-[#013a63] text-white">
+                        <h3 class="text-xl font-bold text-[#ffa600]">Tổng Kết Tháng</h3>
+                        <p class="text-sm text-gray-300 mb-2">Mục tiêu: Đạt $\ge$ 1 tỷ doanh số HĐ</p>
+                        <p class="text-white">Tổng KPI: 150 Lead mới, 200 Cuộc gọi, 20 Cuộc gặp</p>
+                        <p class="text-white font-semibold mt-3">Tổng HĐ chốt: ~7-10 HĐ lớn hoặc nhiều HĐ nhỏ để đạt 1 tỷ ($\approx$ 400-500tr từ HĐ chốt trong tháng)</p>
+                    </div>
+                </div>
+            </div>
+            <p class="text-sm text-gray-600 mt-4 text-center">Lưu ý: Mục tiêu 1 tỷ VND doanh số/tháng cần chốt nhiều hợp đồng có giá trị trung bình 50-150 triệu VND/tháng/hợp đồng. Doanh số trong tháng 4 chỉ là số hợp đồng được CHỐT, chưa chắc đã KÝ và thanh toán hết trong tháng đó. Đây là doanh số cam kết.</p>
+        </section>
+
+        <!-- 7. Bảng Tính Tài Chính & Hoa Hồng -->
+        <section id="financials" class="section-card">
+            <h2 class="section-title">💸 Bảng Tính Tài Chính & Hoa Hồng (10%)</h2>
+            <p class="text-lg text-center mb-8 text-gray-700">Giả định: Hoa hồng 10% trên tổng giá trị hợp đồng ký kết trong tháng (chưa bao gồm VAT, chỉ tính trên chi phí nhân sự bảo vệ).</p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div class="overflow-x-auto rounded-xl shadow-md bg-white">
+                    <table class="min-w-full">
+                        <thead>
+                            <tr class="bg-[#2a6f97] text-white">
+                                <th class="py-3 px-4 text-left">Kịch bản</th>
+                                <th class="py-3 px-4 text-left">Số lượng HĐ chốt (dự kiến)</th>
+                                <th class="py-3 px-4 text-left">Giá trị HĐ TB/HĐ (triệu đ)</th>
+                                <th class="py-3 px-4 text-left">Tổng giá trị HĐ ký kết/tháng (triệu đ)</th>
+                                <th class="py-3 px-4 text-left">Hoa hồng thu về (triệu đ)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-200 hover:bg-gray-50">
+                                <td class="py-3 px-4 text-gray-800">Bảo thủ</td>
+                                <td class="py-3 px-4 text-gray-800">5</td>
+                                <td class="py-3 px-4 text-gray-800">80</td>
+                                <td class="py-3 px-4 text-gray-800">400</td>
+                                <td class="py-3 px-4 text-gray-800">40</td>
+                            </tr>
+                            <tr class="border-b border-gray-200 bg-[#e0f2fe] font-bold text-[#01497c]">
+                                <td class="py-3 px-4">Mục tiêu</td>
+                                <td class="py-3 px-4">10</td>
+                                <td class="py-3 px-4">100</td>
+                                <td class="py-3 px-4">1.000</td>
+                                <td class="py-3 px-4">100</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-3 px-4 text-gray-800">Lạc quan</td>
+                                <td class="py-3 px-4 text-gray-800">15</td>
+                                <td class="py-3 px-4 text-gray-800">120</td>
+                                <td class="py-3 px-4 text-gray-800">1.800</td>
+                                <td class="py-3 px-4 text-gray-800">180</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <h3 class="subsection-title text-center mb-4">Dự Phóng Tài Chính & Hoa Hồng</h3>
+                    <div class="chart-container h-80 md:h-96">
+                        <canvas id="financialsChart"></canvas>
+                    </div>
+                    <p class="text-center text-gray-600 mt-4 text-sm">Biểu đồ so sánh tổng giá trị hợp đồng và hoa hồng thu về theo các kịch bản khác nhau.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Rủi Ro & Phương Án Dự Phòng -->
+        <section id="risks" class="section-card">
+            <h2 class="section-title">⚠️ Rủi Ro & Phương Án Dự Phòng</h2>
+            <p class="text-lg text-center mb-8 text-gray-700">Để đạt mục tiêu, bạn cần nhận diện và có phương án đối phó với các rủi ro.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Rủi ro 1 -->
+                <div>
+                    <div class="risk-item" id="risk1">
+                        <strong>Rủi ro:</strong> Không chốt được hợp đồng/Tỷ lệ chuyển đổi thấp.
+                    </div>
+                    <div class="solution-item">
+                        <strong>Khắc phục:</strong> Nâng cao kỹ năng thuyết phục (tập trung vào giá trị thực sự của Nam Thiên Long), xây dựng quan hệ cá nhân, mở rộng danh sách đối tác, học hỏi từ từ chối.
+                    </div>
+                    <button class="gemini-button" onclick="expandRiskAnalysis('risk1', event)">✨ Phân tích & Khắc phục mở rộng</button>
+                    <div class="gemini-response hidden"></div>
+                </div>
+                <!-- Rủi ro 2 -->
+                <div>
+                    <div class="risk-item" id="risk2">
+                        <strong>Rủi ro:</strong> Đối tác bảo vệ (Nam Thiên Long) không đủ năng lực/Thiếu nhân sự.
+                    </div>
+                    <div class="solution-item">
+                        <strong>Khắc phục:</strong> Sàng lọc đối tác cực kỳ kỹ lưỡng (may mắn là Nam Thiên Long có hồ sơ năng lực rất tốt), thường xuyên kiểm tra, đánh giá, và luôn có phương án dự phòng.
+                    </div>
+                    <button class="gemini-button" onclick="expandRiskAnalysis('risk2', event)">✨ Phân tích & Khắc phục mở rộng</button>
+                    <div class="gemini-response hidden"></div>
+                </div>
+                <!-- Rủi ro 3 -->
+                <div>
+                    <div class="risk-item" id="risk3">
+                        <strong>Rủi ro:</strong> Chậm thanh toán hoa hồng từ đối tác bảo vệ.
+                    </div>
+                    <div class="solution-item">
+                        <strong>Khắc phục:</strong> Ký hợp đồng môi giới rõ ràng với Nam Thiên Long, ghi rõ điều khoản thanh toán, thời gian, phạt chậm thanh toán. Đàm phán để nhận hoa hồng theo giai đoạn.
+                    </div>
+                    <button class="gemini-button" onclick="expandRiskAnalysis('risk3', event)">✨ Phân tích & Khắc phục mở rộng</button>
+                    <div class="gemini-response hidden"></div>
+                </div>
+                <!-- Rủi ro 4 -->
+                <div>
+                    <div class="risk-item" id="risk4">
+                        <strong>Rủi ro:</strong> Khách hàng trực tiếp liên hệ với công ty bảo vệ.
+                    </div>
+                    <div class="solution-item">
+                        <strong>Khắc phục:</strong> Luôn nhấn mạnh và chứng minh giá trị độc quyền của bạn (sàng lọc, tối ưu hóa, hỗ trợ liên tục). Có hợp đồng bảo mật/cam kết với Nam Thiên Long. Trở thành "chuyên gia tư vấn tin cậy" của khách hàng.
+                    </div>
+                    <button class="gemini-button" onclick="expandRiskAnalysis('risk4', event)">✨ Phân tích & Khắc phục mở rộng</button>
+                    <div class="gemini-response hidden"></div>
+                </div>
+                <!-- Rủi ro 5 -->
+                <div class="md:col-span-2">
+                    <div class="risk-item" id="risk5">
+                        <strong>Rủi ro:</strong> Thị trường cạnh tranh gay gắt/Giá cả.
+                    </div>
+                    <div class="solution-item">
+                        <strong>Khắc phục:</strong> Không cạnh tranh bằng giá (tập trung vào giá trị vượt trội của Nam Thiên Long), tìm thị trường ngách, phân tích đối thủ, mở rộng dịch vụ (tư vấn an ninh tổng thể).
+                    </div>
+                    <button class="gemini-button" onclick="expandRiskAnalysis('risk5', event)">✨ Phân tích & Khắc phục mở rộng</button>
+                    <div class="gemini-response hidden"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. Công Cụ & Tài Liệu Hỗ Trợ -->
+        <section id="tools-and-resources" class="section-card">
+            <h2 class="section-title">🛠️ Công Cụ & Tài Liệu Hỗ Trợ</h2>
+            <p class="text-lg text-center mb-8 text-gray-700">Để tối ưu hiệu quả và không bỏ sót khách hàng, bạn cần các công cụ và tài liệu sau:</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="tool-item-container">
+                    <span class="font-semibold text-base" id="tool1">Mẫu CRM đơn giản (Excel/Google Sheet)</span>
+                    <button class="gemini-button" onclick="elaborateTool('tool1', event)">✨ Hướng dẫn Sử dụng</button>
+                    <div class="gemini-response hidden"></div>
+                </div>
+                <div class="tool-item-container">
+                    <span class="font-semibold text-base" id="tool2">Lịch follow-up tự động (Google Calendar/Microsoft Outlook Calendar)</span>
+                    <button class="gemini-button" onclick="elaborateTool('tool2', event)">✨ Hướng dẫn Sử dụng</button>
+                    <div class="gemini-response hidden"></div>
+                </div>
+                <div class="tool-item-container">
+                    <span class="font-semibold text-base" id="tool3">Checklist hồ sơ nhân sự bảo vệ mẫu (cho đối tác)</span>
+                    <button class="gemini-button" onclick="elaborateTool('tool3', event)">✨ Hướng dẫn Sử dụng</button>
+                    <div class="gemini-response hidden"></div>
+                </div>
+                <div class="tool-item-container">
+                    <span class="font-semibold text-base" id="tool4">Hợp đồng môi giới/giới thiệu dịch vụ mẫu (giữa bạn & Nam Thiên Long)</span>
+                    <button class="gemini-button" onclick="elaborateTool('tool4', event)">✨ Hướng dẫn Sử dụng</button>
+                    <div class="gemini-response hidden"></div>
+                </div>
+                <div class="tool-item-container">
+                    <span class="font-semibold text-base" id="tool5">Hồ sơ năng lực rút gọn của Nam Thiên Long</span>
+                    <button class="gemini-button" onclick="elaborateTool('tool5', event)">✨ Hướng dẫn Sử dụng</button>
+                    <div class="gemini-response hidden"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. Chiến Lược Duy Trì & Mở Rộng Sau 3 Tháng -->
+        <section id="growth-strategy" class="section-card">
+            <h2 class="section-title">🚀 Chiến Lược Duy Trì & Mở Rộng Sau 3 Tháng</h2>
+            <p class="text-lg text-center mb-8 text-gray-700">Khi đã đạt được mốc 100 triệu VND hoa hồng/tháng, bạn cần duy trì và mở rộng để đạt mục tiêu 150 triệu VND/tháng.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="strategy-card-interim">
+                    <h3 class="font-bold text-lg text-[#01497c] mb-2">Upsell (Bán thêm dịch vụ)</h3>
+                    <p class="text-gray-700 text-sm">Kiểm tra nhu cầu sau 3-6 tháng, gợi ý dịch vụ nâng cao (tư vấn an ninh tổng thể, bảo vệ sự kiện, bảo vệ yếu nhân/tài sản giá trị cao) dựa trên các dịch vụ mà Nam Thiên Long có thể cung cấp.</p>
+                </div>
+                <div class="strategy-card-interim">
+                    <h3 class="font-bold text-lg text-[#01497c] mb-2">Cross-sell (Bán chéo dịch vụ)</h3>
+                    <p class="text-gray-700 text-sm">Mở rộng mối quan hệ trong cùng công ty khách hàng (ví dụ: tiếp cận phòng IT, vận tải). Giới thiệu dịch vụ khác nếu có mối quan hệ với nhà cung cấp (ví dụ: vệ sinh công nghiệp, bảo trì máy móc).</p>
+                </div>
+                <div class="strategy-card-interim">
+                    <h3 class="font-bold text-lg text-[#01497c] mb-2">Xin Referral (Giới thiệu khách hàng mới)</h3>
+                    <p class="text-gray-700 text-sm">Thời điểm phù hợp: Sau khi khách hàng đã hài lòng với dịch vụ và bạn đã chứng minh được giá trị. Cách tiếp cận: "Anh/chị có biết doanh nghiệp nào khác đang có nhu cầu tương tự không? Em rất sẵn lòng hỗ trợ họ." Có thể đề nghị "phí giới thiệu" nhỏ cho người giới thiệu nếu hợp đồng được ký thành công. Tham gia các hiệp hội doanh nghiệp, CLB doanh nhân tại Bình Dương.</p>
+                </div>
+                <div class="strategy-card-interim">
+                    <h3 class="font-bold text-lg text-[#01497c] mb-2">Tối ưu hóa quy trình làm việc cá nhân</h3>
+                    <p class="text-gray-700 text-sm">Sử dụng các công cụ CRM cao cấp hơn, tự động hóa email marketing, quản lý lịch trình chặt chẽ. Luôn cập nhật kiến thức về ngành an ninh, các công nghệ mới, các quy định pháp luật. Xây dựng thương hiệu cá nhân trên LinkedIn, tham gia các diễn đàn, hội thảo.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center py-8 text-gray-600 text-lg font-semibold">
+            Chúc bạn thành công rực rỡ và sớm đạt được mục tiêu!
+            <br>Hãy kiên trì và luôn nhớ giá trị cốt lõi bạn mang lại cho khách hàng nhé.
+        </footer>
+    </main>
+
+    <script>
+        // Function to wrap long labels for Chart.js
+        const wrapLabel = (label) => {
+            const maxLength = 16;
+            if (typeof label !== 'string' || label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxLength && currentLine !== '') {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        };
+        
+        // Tooltip title callback for Chart.js to handle wrapped labels
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        // Common Chart.js options
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        font: {
+                            family: "'Be Vietnam Pro', sans-serif",
+                            size: 14,
+                        },
+                        color: '#003f5c',
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    },
+                    titleFont: {
+                        family: "'Be Vietnam Pro', sans-serif",
+                        size: 14,
+                        weight: 'bold',
+                    },
+                    bodyFont: {
+                        family: "'Be Vietnam Pro', sans-serif",
+                        size: 12,
+                    },
+                    backgroundColor: 'rgba(0, 63, 92, 0.9)',
+                    titleColor: '#ffffff',
+                    bodyColor: '#ffffff',
+                }
+            },
+            scales: {
+                y: {
+                    ticks: {
+                        color: '#003f5c',
+                        font: {
+                            family: "'Be Vietnam Pro', sans-serif",
+                        }
+                    },
+                    grid: {
+                        color: 'rgba(0, 63, 92, 0.1)'
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: '#003f5c',
+                        font: {
+                            family: "'Be Vietnam Pro', sans-serif",
+                        }
+                    },
+                    grid: {
+                        color: 'rgba(0, 63, 92, 0.1)'
+                    }
+                }
+            }
+        };
+
+        // Data for Tỷ Trọng Khách Hàng Tiềm Năng (Doughnut Chart)
+        // Calculated based on average estimated budget midpoint for each segment
+        const segmentLabels = ['Công ty sản xuất quy mô lớn', 'Khu công nghiệp', 'TTTM, Siêu thị, Bán lẻ', 'KĐT, Chung cư, Bệnh viện'];
+        const segmentDataValues = [23.82, 40.40, 17.30, 18.48]; // Percentages based on average budget potential
+        const segmentColors = ['#003f5c', '#01497c', '#2a6f97', '#468faf'];
+
+        new Chart(document.getElementById('segmentsChart'), {
+            type: 'doughnut',
+            data: {
+                labels: segmentLabels.map(wrapLabel),
+                datasets: [{
+                    label: 'Tỷ Trọng Ngân Sách Ước Tính (%)',
+                    data: segmentDataValues,
+                    backgroundColor: segmentColors,
+                    borderColor: '#ffffff',
+                    borderWidth: 2,
+                    hoverOffset: 4
+                }]
+            },
+            options: commonChartOptions
+        });
+
+        // Data for Top 5 Ngân Sách Ước Tính Cao Nhất (Bar Chart)
+        const topBudgetLabels = [
+            'KCN Mỹ Phước',
+            'KCN Sóng Thần',
+            'KCN VSIP 1',
+            'Giày Thái Bình Dương',
+            'AEON Mall Bình Dương'
+        ];
+        const minBudget = [300, 250, 200, 150, 150];
+        const maxBudget = [600, 500, 400, 250, 250];
+
+        new Chart(document.getElementById('budgetChart'), {
+            type: 'bar',
+            data: {
+                labels: topBudgetLabels.map(wrapLabel),
+                datasets: [
+                    {
+                        label: 'Ngân sách tối thiểu (triệu VND)',
+                        data: minBudget,
+                        backgroundColor: '#01497c',
+                        borderColor: '#003f5c',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Ngân sách tối đa (triệu VND)',
+                        data: maxBudget,
+                        backgroundColor: '#468faf',
+                        borderColor: '#2a6f97',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                ...commonChartOptions,
+                indexAxis: 'y', // Horizontal bar chart
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: '#003f5c',
+                            font: {
+                                family: "'Be Vietnam Pro', sans-serif",
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(0, 63, 92, 0.1)'
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: '#003f5c',
+                            font: {
+                                family: "'Be Vietnam Pro', sans-serif",
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(0, 63, 92, 0.1)'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Data for Bảng Tính Tài Chính & Hoa Hồng (Bar Chart)
+        const financialsLabels = ['Bảo thủ', 'Mục tiêu', 'Lạc quan'];
+        const totalContractValue = [400, 1000, 1800];
+        const commissionEarned = [40, 100, 180];
+
+        new Chart(document.getElementById('financialsChart'), {
+            type: 'bar',
+            data: {
+                labels: financialsLabels,
+                datasets: [
+                    {
+                        label: 'Tổng Giá Trị HĐ Ký Kết (triệu VND)',
+                        data: totalContractValue,
+                        backgroundColor: '#01497c',
+                        borderColor: '#003f5c',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Hoa Hồng Thu Về (triệu VND)',
+                        data: commissionEarned,
+                        backgroundColor: '#ffa600',
+                        borderColor: '#e69500',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                ...commonChartOptions,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: '#003f5c',
+                            font: {
+                                family: "'Be Vietnam Pro', sans-serif",
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(0, 63, 92, 0.1)'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color: '#003f5c',
+                            font: {
+                                family: "'Be Vietnam Pro', sans-serif",
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(0, 63, 92, 0.1)'
+                        }
+                    }
+                }
+            }
+        });
+
+        // JavaScript for toggling details in Kịch Bản Tiếp Cận Đa Kênh
+        function toggleDetails(element) {
+            const parentCard = element.closest('.scenario-card');
+            parentCard.classList.toggle('open');
+            const arrow = element.querySelector('span:last-child');
+            if (parentCard.classList.contains('open')) {
+                arrow.textContent = '▲';
+            } else {
+                arrow.textContent = '▼';
+            }
+        }
+
+        // Gemini API Integration Functions
+        async function callGeminiAPI(prompt, buttonElement, responseDiv) {
+            // Set button to loading state
+            buttonElement.disabled = true;
+            buttonElement.style.opacity = '0.7';
+            buttonElement.innerHTML = '✨ Đang tạo...';
+
+            // Show response div with loading message
+            responseDiv.classList.remove('hidden');
+            responseDiv.innerHTML = '<p class="text-center text-gray-500">Vui lòng chờ trong giây lát...</p>';
+
+            let chatHistory = [];
+            chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+            const payload = { contents: chatHistory };
+            const apiKey = ""; // API key will be provided by Canvas runtime
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+            let responseText = "Có lỗi xảy ra. Vui lòng thử lại."; // Default error message
+            let success = false;
+            let retries = 0;
+            const maxRetries = 5;
+            const baseDelay = 1000; // 1 second
+
+            try {
+                while (retries < maxRetries) {
+                    try {
+                        const response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+
+                        if (response.ok) {
+                            const result = await response.json();
+                            if (result.candidates && result.candidates.length > 0 &&
+                                result.candidates[0].content && result.candidates[0].content.parts &&
+                                result.candidates[0].content.parts.length > 0) {
+                                responseText = result.candidates[0].content.parts[0].text;
+                                success = true;
+                                break; // Exit loop on success
+                            } else {
+                                console.error("Unexpected API response structure:", result);
+                                responseText = "Cấu trúc phản hồi từ Gemini không mong muốn. Vui lòng thử lại.";
+                                break; // Exit loop on unexpected structure
+                            }
+                        } else if (response.status === 429) { // Too Many Requests
+                            retries++;
+                            const delay = baseDelay * Math.pow(2, retries - 1);
+                            await new Promise(resolve => setTimeout(resolve, delay));
+                            // Do not update responseText yet, as we are retrying
+                            continue; // Retry the request
+                        } else {
+                            console.error("API error:", response.status, response.statusText);
+                            responseText = `Lỗi từ API Gemini: ${response.status} ${response.statusText}. Vui lòng thử lại.`;
+                            break; // Exit loop on other API errors
+                        }
+                    } catch (innerError) {
+                        // Catch errors during fetch or response.json() parsing
+                        console.error("Fetch or JSON parse error:", innerError);
+                        responseText = `Có lỗi mạng hoặc xử lý dữ liệu: ${innerError.message}. Vui lòng kiểm tra kết nối và thử lại.`;
+                        break; // Exit loop on inner errors
+                    }
+                }
+            } catch (outerError) {
+                // Catch any unexpected errors in the while loop itself
+                console.error("Unhandled error in callGeminiAPI loop:", outerError);
+                responseText = `Có lỗi không xác định xảy ra: ${outerError.message}.`;
+            } finally {
+                // Reset button state regardless of success or failure
+                buttonElement.disabled = false;
+                buttonElement.style.opacity = '1';
+                // Restore original button text based on its function
+                if (buttonElement.innerText.includes('Tóm tắt')) {
+                    buttonElement.innerHTML = '✨ Tóm tắt lại';
+                } else if (buttonElement.innerText.includes('Phân tích')) {
+                    buttonElement.innerHTML = '✨ Phân tích & Khắc phục mở rộng';
+                } else if (buttonElement.innerText.includes('Tiêu đề')) {
+                    buttonElement.innerHTML = '✨ Gợi ý Tiêu đề Email';
+                } else if (buttonElement.innerText.includes('Agenda')) {
+                    buttonElement.innerHTML = '✨ Tạo Agenda Cuộc Họp';
+                } else if (buttonElement.innerText.includes('Hướng dẫn')) {
+                    buttonElement.innerHTML = '✨ Hướng dẫn Sử dụng';
+                } else if (buttonElement.innerText.includes('Cải thiện')) {
+                    buttonElement.innerHTML = '✨ Cải thiện Kịch bản';
+                }
+
+                // Update response div with response or error message
+                responseDiv.innerHTML = `<p>${responseText.replace(/\n/g, '<br>')}</p>`;
+            }
+        }
+
+        async function summarizeScript(scriptId, event) {
+            const scriptContent = document.getElementById(scriptId).innerText;
+            const buttonElement = event.target;
+            const responseDiv = buttonElement.nextElementSibling; // Get the sibling div for response
+            const prompt = `Tóm tắt kịch bản tiếp cận sau đây một cách ngắn gọn, súc tích, tập trung vào mục đích và điểm chính: ${scriptContent}`;
+            await callGeminiAPI(prompt, buttonElement, responseDiv);
+        }
+
+        async function improveScript(scriptId, event) {
+            const scriptContent = document.getElementById(scriptId).innerText;
+            const buttonElement = event.target;
+            const responseDiv = buttonElement.nextElementSibling; // Get the sibling div for response
+            const prompt = `Dựa trên kịch bản tiếp cận dịch vụ bảo vệ tại Bình Dương sau đây, hãy viết lại nó một cách chuyên nghiệp, thuyết phục và hiệu quả hơn, đảm bảo ngôn ngữ thân thiện nhưng vẫn giữ được sự tin cậy và giá trị cốt lõi của dịch vụ: ${scriptContent}`;
+            await callGeminiAPI(prompt, buttonElement, responseDiv);
+        }
+
+        async function expandRiskAnalysis(riskId, event) {
+            const riskItem = document.getElementById(riskId);
+            const riskText = riskItem.querySelector('strong').innerText + " " + riskItem.innerText.replace(riskItem.querySelector('strong').innerText, '').trim();
+            const solutionItem = riskItem.nextElementSibling;
+            const currentSolutionText = solutionItem.querySelector('strong').innerText + " " + solutionItem.innerText.replace(solutionItem.querySelector('strong').innerText, '').trim();
+            const buttonElement = event.target;
+            const responseDiv = buttonElement.nextElementSibling; // Get the sibling div for response
+
+            const prompt = `Phân tích rủi ro sau đây: "${riskText}" và đề xuất thêm các phương án khắc phục sáng tạo, chi tiết hơn ngoài phương án hiện có: "${currentSolutionText}".`;
+            await callGeminiAPI(prompt, buttonElement, responseDiv);
+        }
+
+        async function generateEmailSubject(contentId, event) {
+            const emailContent = document.getElementById(contentId).innerText;
+            const buttonElement = event.target;
+            const responseDiv = buttonElement.nextElementSibling; // Get the sibling div for response
+
+            const prompt = `Tạo 3-5 tiêu đề email hấp dẫn và chuyên nghiệp cho nội dung email sau đây, tập trung vào việc tối ưu an ninh và tiết kiệm chi phí: ${emailContent}`;
+            await callGeminiAPI(prompt, buttonElement, responseDiv);
+        }
+
+        async function generateMeetingAgenda(scriptId, event) {
+            const meetingScript = document.getElementById(scriptId).innerText;
+            const buttonElement = event.target;
+            const responseDiv = buttonElement.nextElementSibling; // Get the sibling div for response
+
+            const prompt = `Dựa trên kịch bản gặp trực tiếp sau đây, hãy tạo một agenda cuộc họp 30 phút chi tiết với các mục chính và thời lượng ước tính cho mỗi mục, tập trung vào việc tối ưu giải pháp an ninh và lợi ích của Nam Thiên Long: ${meetingScript}`;
+            await callGeminiAPI(prompt, buttonElement, responseDiv);
+        }
+
+        async function elaborateTool(toolId, event) {
+            const toolElement = document.getElementById(toolId);
+            const toolDescription = toolElement.innerText;
+            const buttonElement = event.target;
+            const responseDiv = buttonElement.nextElementSibling; // Get the sibling div for response
+
+            const prompt = `Giải thích cách sử dụng hiệu quả công cụ/tài liệu sau đây trong bối cảnh kế hoạch phát triển kinh doanh dịch vụ bảo vệ tại Bình Dương, đặc biệt là cách nó hỗ trợ đạt mục tiêu 1 tỷ doanh số hợp đồng: "${toolDescription}"`;
+            await callGeminiAPI(prompt, buttonElement, responseDiv);
+        }
+    </script>
+</body>
+</html>
