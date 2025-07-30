@@ -509,25 +509,25 @@
                     </div>
                     <div class="scenario-details">
                         <p class="mb-2"><strong>Mở đầu (Rất ngắn gọn, đi thẳng vào vấn đề):</strong></p>
-                        <p id="phoneScriptStart">"Chào anh/chị [Tên Người Liên Hệ/Chức danh], em là [Tên bạn] đây ạ – một người bạn làm trong ngành dịch vụ bảo vệ ở Bình Dương cũng được 15 năm rồi. Em có biết [Tên Công Ty/Tổ Chức] mình đang [có nhu cầu tìm hiểu/có thể cần nâng cấp] giải pháp an ninh. Em có một vài ý tưởng hay ho có thể giúp bên mình tối ưu chi phí mà vẫn đảm bảo an ninh tuyệt đối, không tốn thời gian của anh/chị đâu. Chắc tầm 2 phút thôi, em xin phép chia sẻ ngắn gọn được không ạ?"</p>
+                        <p id="phoneScriptStart">"Chào anh/chị [Tên Người Liên Hệ/Chức danh], em là [Tên bạn], cố vấn giải pháp an ninh tại Bình Dương. Em liên hệ vì nhận thấy [Tên Công Ty] có thể đang tìm kiếm giải pháp an ninh tối ưu, hoặc muốn giảm chi phí mà vẫn đảm bảo hiệu quả. Em có một vài thông tin giá trị về cách Nam Thiên Long giúp các doanh nghiệp tương tự đạt được điều này. Anh/chị có thể dành 1-2 phút để em chia sẻ nhanh không ạ?"</p>
                         <button class="gemini-button" onclick="summarizeScript('phoneScriptStart', event)">✨ Tóm tắt Mở đầu</button>
                         <button class="gemini-button" onclick="improveScript('phoneScriptStart', event)">✨ Cải thiện Kịch bản</button>
                         <div class="gemini-response hidden"></div>
 
                         <p class="mt-3 mb-2"><strong>Follow-up (Sau khi gửi email/Zalo nhưng chưa được hồi âm):</strong></p>
-                        <p id="phoneScriptFollowUp">"Chào anh/chị [Tên], em là [Tên bạn] đây ạ, hôm trước em có gửi thông tin về giải pháp an ninh cho [Tên Công Ty] mình qua email/Zalo. Anh/chị đã kịp xem qua chưa ạ? Có điểm nào chưa rõ cần em giải thích thêm không? Em tin đây là một giải pháp rất đáng để bên mình tìm hiểu kỹ hơn đấy ạ."</p>
+                        <p id="phoneScriptFollowUp">"Chào anh/chị [Tên], em là [Tên bạn], hôm trước em có gửi thông tin về giải pháp an ninh tối ưu chi phí cho [Tên Công Ty] mình. Anh/chị đã có thời gian xem qua chưa ạ? Em muốn đảm bảo rằng mọi thắc mắc của anh/chị đều được giải đáp. Có điểm nào em có thể làm rõ thêm ngay bây giờ không?"</p>
                         <button class="gemini-button" onclick="summarizeScript('phoneScriptFollowUp', event)">✨ Tóm tắt Follow-up</button>
                         <button class="gemini-button" onclick="improveScript('phoneScriptFollowUp', event)">✨ Cải thiện Kịch bản</button>
                         <div class="gemini-response hidden"></div>
 
                         <p class="mt-3 mb-2"><strong>Chốt hẹn (Khi khách hàng tỏ ra quan tâm):</strong></p>
-                        <p id="phoneScriptClose">"Nghe tuyệt vời quá! Vậy để em có thể trình bày cụ thể hơn về cách Nam Thiên Long có thể giúp [Tên Công Ty] tiết kiệm chi phí và đảm bảo an ninh hiệu quả nhất, mình sắp xếp một buổi gặp trực tiếp khoảng 30 phút vào sáng thứ [Thứ] hay chiều thứ [Thứ] tới được không ạ? Em sẽ mang theo những 'hồ sơ năng lực' xịn nhất của Nam Thiên Long mà em đã sàng lọc kỹ càng."</p>
+                        <p id="phoneScriptClose">"Rất tuyệt! Để chúng ta có thể đi sâu hơn vào cách Nam Thiên Long có thể mang lại giá trị cụ thể cho [Tên Công Ty] về an ninh và tối ưu chi phí, mình sắp xếp một buổi trao đổi ngắn khoảng 25-30 phút vào [Thời gian gợi ý 1] hoặc [Thời gian gợi ý 2] được không ạ? Em sẽ chuẩn bị thông tin chi tiết nhất để anh/chị dễ dàng đánh giá."</p>
                         <button class="gemini-button" onclick="summarizeScript('phoneScriptClose', event)">✨ Tóm tắt Chốt hẹn</button>
                         <button class="gemini-button" onclick="improveScript('phoneScriptClose', event)">✨ Cải thiện Kịch bản</button>
                         <div class="gemini-response hidden"></div>
 
                         <p class="mt-3 mb-2"><strong>Xử lý từ chối (Ví dụ: "Chúng tôi đang ổn định", "Đang có nhà cung cấp rồi"):</strong></p>
-                        <p id="phoneScriptRejection">"Em hiểu mà. Nhiều doanh nghiệp cũng nghĩ vậy cho đến khi họ nhận ra những chi phí 'ẩn' và rủi ro tiềm tàng từ việc không tối ưu hệ thống an ninh. Em không có ý là bên mình phải thay đổi ngay đâu ạ. Mục đích của em chỉ là chia sẻ một góc nhìn mới, một giải pháp mà Nam Thiên Long đã giúp nhiều doanh nghiệp khác tiết kiệm 15-20% chi phí mà vẫn nâng cao chất lượng. Anh/chị có thể dành 15 phút để em trình bày những điểm khác biệt đáng giá đó không?"</p>
+                        <p id="phoneScriptRejection">"Em hoàn toàn hiểu. Nhiều doanh nghiệp lớn như [Tên Công Ty] thường đã có đối tác ổn định. Tuy nhiên, thị trường luôn thay đổi, và việc cập nhật các giải pháp mới có thể mang lại lợi ích bất ngờ. Em chỉ mong có cơ hội chia sẻ ngắn gọn về cách Nam Thiên Long đã giúp các đối tác khác tối ưu 15-30% chi phí mà vẫn nâng cao chất lượng an ninh. Anh/chị có thể dành 10-15 phút để em trình bày những điểm khác biệt này không ạ?"</p>
                         <button class="gemini-button" onclick="summarizeScript('phoneScriptRejection', event)">✨ Tóm tắt Xử lý từ chối</button>
                         <button class="gemini-button" onclick="improveScript('phoneScriptRejection', event)">✨ Cải thiện Kịch bản</button>
                         <div class="gemini-response hidden"></div>
@@ -542,18 +542,37 @@
                     </div>
                     <div class="scenario-details">
                         <p class="mb-2"><strong>Mở đầu:</strong></p>
-                        <p id="emailScriptTitle"><strong>Tiêu đề:</strong> "Giải pháp an ninh tối ưu & tiết kiệm chi phí cho [Tên Công Ty] - [Tên bạn]"</p>
+                        <p id="emailScriptTitle"><strong>Tiêu đề:</strong> "Tối ưu An ninh & Tiết kiệm Chi phí cho [Tên Công Ty] - Từ [Tên bạn]"</p>
                         <button class="gemini-button" onclick="generateEmailSubject('emailScriptContent', event)">✨ Gợi ý Tiêu đề Email</button>
                         <div class="gemini-response hidden"></div>
 
-                        <p id="emailScriptContent" class="mt-3"><strong>Nội dung:</strong><br>"Kính gửi Anh/Chị [Tên Người Liên Hệ/Chức danh],<br>Em là [Tên bạn], một người bạn đồng hành trong lĩnh vực dịch vụ bảo vệ tại Bình Dương với 15 năm kinh nghiệm. Em chuyên kết nối các doanh nghiệp như [Tên Công Ty] với những đơn vị bảo vệ uy tín hàng đầu, đã được kiểm chứng về chất lượng và hiệu quả chi phí.<br>Với tình hình an ninh ngày càng phức tạp và nhu cầu tối ưu ngân sách hiện nay, em tin rằng [Tên Công Ty] mình có thể hưởng lợi rất nhiều từ một giải pháp an ninh được thiết kế riêng, không chỉ đảm bảo an toàn tuyệt đối mà còn giúp tiết kiệm đáng kể.<br>Những giá trị mà Nam Thiên Long có thể mang lại cho bên mình, thông qua sự giới thiệu của em:<br>• An tâm tuyệt đối: Nam Thiên Long có tiềm lực tài chính vững mạnh (48 tỷ vốn), cam kết bồi thường ngay lập tức nếu có sự cố, không để anh/chị phải lo lắng.<br>• Nhân sự chuẩn chỉnh: Đội ngũ bảo vệ được đào tạo bài bản theo chuẩn ISO 9001:2008, 65% là bộ đội/công an xuất ngũ, đảm bảo nghiệp vụ và kỷ luật cao.<br>• Tối ưu chi phí: Nam Thiên Long cam kết giúp giảm 15-30% chi phí bảo vệ hiện tại mà vẫn nâng cao chất lượng dịch vụ.<br>• Phản ứng nhanh: Hệ thống cảnh báo 24/24 và đội cơ động luôn sẵn sàng hỗ trợ, phối hợp chặt chẽ với công an địa phương.<br>Em rất mong có cơ hội trao đổi trực tiếp khoảng 20-30 phút để hiểu rõ hơn về nhu cầu của [Tên Công Ty] và giới thiệu giải pháp phù hợp nhất. Anh/Chị có thể cho em biết thời gian nào thuận tiện để chúng ta kết nối không ạ?<br>Trân trọng,<br>[Tên bạn]<br>Cố vấn phát triển kinh doanh dịch vụ bảo vệ<br>[Số điện thoại] | [Email] | [LinkedIn Profile (nếu có)]"</p>
+                        <p id="emailScriptContent" class="mt-3"><strong>Nội dung:</strong><br>"Kính gửi Anh/Chị [Tên Người Liên Hệ/Chức danh],<br>
+Em là [Tên bạn], cố vấn giải pháp an ninh chuyên nghiệp tại Bình Dương. Với hơn 15 năm kinh nghiệm, em chuyên kết nối các doanh nghiệp hàng đầu như [Tên Công Ty] với những đối tác bảo vệ uy tín, giúp họ tối ưu hóa an ninh và chi phí vận hành.<br>
+Em liên hệ vì nhận thấy [Tên Công Ty] có thể đang tìm kiếm một giải pháp an ninh hiệu quả hơn, hoặc muốn xem xét các cơ hội để giảm thiểu chi phí mà vẫn đảm bảo an toàn tuyệt đối.<br>
+Nam Thiên Long, đối tác chiến lược mà em tin tưởng, có những điểm mạnh vượt trội có thể mang lại giá trị lớn cho quý công ty:<br>
+•   **An tâm tuyệt đối:** Với vốn điều lệ 48 tỷ đồng và bảo hiểm trách nhiệm 5 tỷ đồng, Nam Thiên Long đảm bảo bồi thường tức thì nếu có sự cố, giúp quý công ty hoàn toàn yên tâm.<br>
+•   **Nhân sự tinh nhuệ:** Hơn 65% nhân sự là bộ đội/công an xuất ngũ, được đào tạo bài bản theo chuẩn ISO 9001:2008, đảm bảo nghiệp vụ và kỷ luật cao.<br>
+•   **Giải pháp tối ưu chi phí thực tế:** Nam Thiên Long giúp giảm 15-30% chi phí bảo vệ hiện tại thông qua khảo sát và phương án tối ưu, không phát sinh chi phí ẩn.<br>
+•   **Hệ thống phản ứng nhanh 24/7:** Trung tâm cảnh báo từ xa và đội cơ động luôn sẵn sàng, phối hợp chặt chẽ với cơ quan chức năng để xử lý mọi tình huống.<br>
+Em rất mong có cơ hội trao đổi ngắn gọn (khoảng 20-30 phút) để tìm hiểu sâu hơn về nhu cầu của [Tên Công Ty] và trình bày cách chúng em có thể giúp anh/chị đạt được mục tiêu an ninh và tiết kiệm chi phí.<br>
+Anh/Chị có thể cho em biết thời gian nào thuận tiện để chúng ta kết nối không ạ?<br>
+Trân trọng,<br>
+[Tên bạn]<br>
+Cố vấn Phát triển Kinh doanh Dịch vụ Bảo vệ<br>
+[Số điện thoại] | [Email] | [LinkedIn Profile (nếu có)]"</p>
                         <button class="gemini-button" onclick="summarizeScript('emailScriptContent', event)">✨ Tóm tắt Nội dung Email</button>
                         <button class="gemini-button" onclick="improveScript('emailScriptContent', event)">✨ Cải thiện Kịch bản</button>
                         <div class="gemini-response hidden"></div>
 
                         <p class="mt-3 mb-2"><strong>Follow-up (Sau 3-5 ngày nếu chưa có phản hồi):</strong></p>
                         <p id="emailScriptFollowUpContent"><strong>Tiêu đề:</strong> "Nhắc lại: Giải pháp an ninh tối ưu cho [Tên Công Ty] - [Tên bạn]"</p>
-                        <p>"Kính gửi Anh/Chị [Tên],<br>Em hy vọng email trước của em không làm phiền anh/chị. Em muốn kiểm tra xem anh/chị đã nhận được thông tin em gửi về giải pháp an ninh và tối ưu chi phí cho [Tên Công Ty] chưa ạ.<br>Trong bối cảnh nhiều doanh nghiệp đang tìm cách nâng cao hiệu quả an ninh đồng thời kiểm soát ngân sách, em tin những giá trị mà Nam Thiên Long mang lại có thể rất hữu ích cho [Tên Công Ty] trong việc:<br>• An tâm tuyệt đối với cam kết bồi thường ngay lập tức.<br>• Có đội ngũ bảo vệ chuyên nghiệp, được đào tạo bài bản.<br>• Giảm thiểu rủi ro an ninh và chi phí không cần thiết.<br>Em rất mong được trò chuyện ngắn gọn để làm rõ hơn các điểm này và xem xét liệu giải pháp của Nam Thiên Long có phù hợp với định hướng của [Tên Công Ty] hay không.<br>Xin vui lòng phản hồi email này hoặc liên hệ em qua số [Số điện thoại] nhé.<br>Trân trọng,<br>[Tên bạn]"</p>
+                        <p>"Kính gửi Anh/Chị [Tên],<br>
+Em là [Tên bạn], cố vấn giải pháp an ninh. Em gửi lại email này để đảm bảo anh/chị đã nhận được thông tin về cách Nam Thiên Long có thể giúp [Tên Công Ty] tối ưu hóa hệ thống an ninh và tiết kiệm chi phí đáng kể.<br>
+Trong bối cảnh hiện nay, việc tìm kiếm một đối tác bảo vệ vừa chuyên nghiệp, vừa hiệu quả về chi phí là rất quan trọng. Nam Thiên Long nổi bật với cam kết bồi thường ngay lập tức, đội ngũ nhân sự tinh nhuệ (hơn 65% là bộ đội/công an xuất ngũ), và khả năng giúp giảm 15-30% chi phí bảo vệ mà vẫn nâng cao chất lượng.<br>
+Em rất mong có cơ hội trao đổi ngắn gọn để làm rõ hơn về những lợi ích này và xem xét liệu giải pháp của Nam Thiên Long có phù hợp với định hướng của [Tên Công Ty] hay không.<br>
+Xin vui lòng phản hồi email này hoặc liên hệ em qua số [Số điện thoại] để chúng ta có thể sắp xếp một buổi trò chuyện nhé.<br>
+Trân trọng,<br>
+[Tên bạn]"</p>
                         <button class="gemini-button" onclick="summarizeScript('emailScriptFollowUpContent', event)">✨ Tóm tắt Email Follow-up</button>
                         <button class="gemini-button" onclick="improveScript('emailScriptFollowUpContent', event)">✨ Cải thiện Kịch bản</button>
                         <div class="gemini-response hidden"></div>
@@ -1172,7 +1191,7 @@
                 buttonElement.style.opacity = '1';
                 // Restore original button text based on its function
                 if (buttonElement.innerText.includes('Tóm tắt')) {
-                    buttonElement.innerHTML = '✨ Tóm tắt lại';
+                    buttonElement.innerHTML = '✨ Tóm tắt Mở đầu';
                 } else if (buttonElement.innerText.includes('Phân tích')) {
                     buttonElement.innerHTML = '✨ Phân tích & Khắc phục mở rộng';
                 } else if (buttonElement.innerText.includes('Tiêu đề')) {
